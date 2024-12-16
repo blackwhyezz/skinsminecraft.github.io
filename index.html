@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skins for Minecraft Mobile</title>
+    <style>
+        /* Body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://i.imgur.com/CgRvwzj.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Snow animation */
+        @keyframes snow {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(100vh); }
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            width: 10px;
+            height: 10px;
+            animation: snow 5s linear infinite;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Search container */
+        .search-container {
+            text-align: center;
+            margin: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 60%;
+            max-width: 400px;
+            border: 1px solid white;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #f44336;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #e53935;
+        }
+
+        /* Results */
+        .results {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .skin-card {
+            background: rgba(255, 255, 255, 0.8);
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            color: black;
+        }
+
+        .skin-card img {
+            max-width: 100px;
+            height: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Snowfall Effect -->
+    <script>
+        for (let i = 0; i < 50; i++) {
+            let snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowflake.style.width = snowflake.style.height = Math.random() * 10 + 5 + 'px';
+            document.body.appendChild(snowflake);
+        }
+    </script>
+
+    <!-- Header -->
+    <header>Добро пожаловать на сайт по скинам на Minecraft для телефона &#10052;</header>
+
+    <!-- Search Container -->
+    <div class="search-container">
+        <input type="text" id="skinName" placeholder="Enter your nickname...">
+        <button onclick="searchSkin()">Find Skin</button>
+    </div>
+
+    <!-- Results -->
+    <div class="results" id="results"></div>
+
+    <script>
+        // Fetch skins based on input
+        function searchSkin() {
+            const name = document.getElementById('skinName').value.trim();
+            const resultsDiv = document.getElementById('results');
+            if (name === '') {
+                alert('Please enter a nickname!');
+                return;
+            }
+            // Mockup API call (replace with real API if needed)
+            resultsDiv.innerHTML = `
+                <div class='skin-card'>
+                    <p>Skin for <strong>${name}</strong></p>
+                    <img src='https://mc-heads.net/avatar/${name}/100' alt='Skin'>
+                    <p><a href='https://mc-heads.net/download/${name}' target='_blank'>Download</a></p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
